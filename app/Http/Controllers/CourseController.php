@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
+use function Laravel\Prompts\alert;
+
 class CourseController extends Controller
 {
     /**
@@ -12,7 +14,9 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $courses = Course::all();
+
+        return view('course.index', compact('courses'));
     }
 
     /**
@@ -20,7 +24,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return view('course.create');
     }
 
     /**
@@ -28,7 +32,21 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $course = $request->validate(
+            [
+                'title' => 'required',
+                'force_reward'=> 'required|numeric',
+                'role_id' => 'required',
+            ],
+            [
+                'title.required' => 'Title must not be empty',
+                'force_reward.required' => 'Force reward must not be empty',
+                'force_reward.numeric' => 'Please enter a valid number',
+                'role_id.required' => 'Please select the role for course',
+            ],
+        );
+        Course::create($course);
+        return redirect()->route('course.index')->with('success', 'Data berhasil disimpan!');
     }
 
     /**

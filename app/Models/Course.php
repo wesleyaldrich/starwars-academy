@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Course extends Model
 {
     use SoftDeletes;
-
+    protected $fillable = [
+        'title',
+        'role_id',
+        'force_reward'
+    ];
     public $timestamps = false;
 
     public function role()
