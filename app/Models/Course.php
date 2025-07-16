@@ -10,6 +10,11 @@ class Course extends Model
     use SoftDeletes;
 
     public $timestamps = false;
+    protected $fillable = [
+        'title',
+        'force_reward',
+        'role_id'
+    ];
 
     public function role()
     {
