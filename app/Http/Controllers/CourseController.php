@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCourseRequest;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
@@ -27,19 +28,9 @@ class CourseController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCourseRequest $request)
     {
-        $course = $request->validate([
-            'title' => 'required',
-            'force_reward' => 'required|numeric',
-            'role_id' => 'required'
-        ],[
-            'title.required' => 'Title must not be empty',
-            'force_reward.required' => 'Force reward must not be empty',
-            'force_reward.numeric' => 'Force reward must be a number',
-            'role_id.required' => 'Role must not be empty',
-        ]);
-
+        $course = $request->validated();
         Course::create($course);
         return redirect('/')->with('success', 'Selamat kamu berhasil berhasil');
     }
@@ -47,32 +38,45 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Course $course)
+    public function show($id)
     {
-        //
+        $course = Course::find($id);
+        return view('detail', compact('course'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Course $course)
+    public function edit($id)
     {
-        //
+        $course = Course::find($id);
+        return view('edit', compact('course'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Course $course)
+    public function update(StoreCourseRequest $request, String $id)
     {
-        //
+        $course = Course::find($id);
+        $input = $request->validated();
+        
+        $course->title = $input['title'];
+        $course->force_reward = $input['force_reward'];
+        $course->role_id = $input['role_id'];
+        $course->save();
+
+        return redirect()->route('indexCourse')->with('success', 'Selamat kamu berhasil mengupdate course');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Course $course)
+    public function destroy($id)
     {
-        //
+        $course = Course::find($id);
+        $course->delete();
+
+        return redirect()->route('indexCourse')->with('success', 'Selamat kamu berhasil menghapus course');
     }
 }

@@ -30,6 +30,13 @@
                     </li>
                 </ul>
             </div>
+            <form action="{{ route('changeLanguage') }}" method="POST">
+            @csrf
+                <select id="lang" name="lang" onchange= 'this.form.submit()'>
+                    <option value="en">English</option>
+                    <option value="id">Indonesia</option>
+                </select>
+            </form>
         </div>
     </nav>
     @yield('content')

@@ -27,9 +27,15 @@
                         <td>{{ $c->force_reward }}</td>
                         <td>{{ $c->role->name }}</td>
                         <td>
-                            <a href="#" class="btn btn-info">Detail</a>
-                            <a href="#" class="btn btn-success">Edit</a>
-                            <a href="#" class="btn btn-danger">Delete</a>
+                            <div class="d-flex flex-row gap-2">
+                                <a href="{{ route('showCourse', $c->id) }}" class="btn btn-info">Detail</a>
+                                <a href="{{ route('editCourse', $c->id) }}" class="btn btn-success">Edit</a>
+                                <form action="{{ route('deleteCourse', $c->id) }}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div class="d-flex flex-row gap-2">
                         </td>
                     </tr>
                 @endforeach
