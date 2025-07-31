@@ -32,7 +32,7 @@ class CourseController extends Controller
     {
         $course = $request->validated();
         Course::create($course);
-        return redirect('/')->with('success', 'Selamat kamu berhasil berhasil');
+        return redirect('/')->with('success', __('alerts.success_create_course'));
     }
 
     /**
@@ -66,7 +66,7 @@ class CourseController extends Controller
         $course->role_id = $input['role_id'];
         $course->save();
 
-        return redirect()->route('indexCourse')->with('success', 'Selamat kamu berhasil mengupdate course');
+        return redirect()->route('indexCourse')->with('success', __('alerts.success_update_course'));
     }
 
     /**
@@ -77,6 +77,6 @@ class CourseController extends Controller
         $course = Course::find($id);
         $course->delete();
 
-        return redirect()->route('indexCourse')->with('success', 'Selamat kamu berhasil menghapus course');
+        return redirect()->route('indexCourse')->with('success', __('alerts.success_delete_course'));
     }
 }

@@ -30,10 +30,10 @@ class StoreCourseRequest extends FormRequest
 
     public function messages(): array{
         return [
-            'title.required' => 'Title must not be empty',
-            'force_reward.required' => 'Force reward must not be empty',
-            'force_reward.numeric' => 'Force reward must be a number',
-            'role_id.required' => 'Role must not be empty',
+            'title.required' => __('form.title_required'),
+            'force_reward.required' => __('form.force_reward_required'),
+            'force_reward.numeric' => __('form.force_reward_numeric'),
+            'role_id.required' => __('form.role_id_required'),
         ];
     }
 }

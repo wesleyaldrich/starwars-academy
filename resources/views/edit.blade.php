@@ -4,20 +4,20 @@
         <form action="{{ route('updateCourse', $course->id) }}" method="POST">
             @csrf
             <div class="mb-3">
-                <label for="title" class="form-label">{{ __('form.courseTitle')}}</label>
+                <label for="title" class="form-label">{{ __('form.course_title')}}</label>
                 <input type="text" class="form-control" id="title" name="title" value="{{ $course->title }}">
                 @error('title')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="force_reward" class="form-label">Force Reward</label>
+                <label for="force_reward" class="form-label">{{ __('form.force_reward')}}</label>
                 <input type="text" class="form-control" id="force_reward" name="force_reward" value="{{ $course->force_reward }}">
                 @error('force_reward')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
-            Course Role
+            {{ __('form.course_role')}}
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="role_id" id="flexRadioDefault1" value="1" {{ $course->role_id == 1 ? 'checked' : '' }}>
                 <label class="form-check-label" for="flexRadioDefault1">
@@ -33,7 +33,7 @@
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">{{ __('form.submit')}}</button>
         </form>
     </div>
 @endsection

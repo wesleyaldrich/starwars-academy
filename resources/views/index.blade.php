@@ -1,21 +1,18 @@
 @extends('master')
 @section('content')
     <div class="container-fluid">
-        @session('success')
-        <p class="alert alert-success"> {{ session('success') }} </p>
-        @endsession
         <div class="d-flex flex-row px-5">
-            <a href="{{ route('createCourse') }}" class="btn btn-info ms-auto">Create Course</a>
+            <a href="{{ route('createCourse') }}" class="btn btn-info ms-auto">{{ __('index.create_course')}}</a>
         </div>
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Number</th>
+                    <th scope="col">{{ __('index.number')}}</th>
                     <th scope="col">ID</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Force Reward</th>
-                    <th scope="col">Role</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">{{ __('index.title')}}</th>
+                    <th scope="col">{{ __('index.force_reward')}}</th>
+                    <th scope="col">{{ __('index.role')}}</th>
+                    <th scope="col">{{ __('index.action')}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,12 +25,12 @@
                         <td>{{ $c->role->name }}</td>
                         <td>
                             <div class="d-flex flex-row gap-2">
-                                <a href="{{ route('showCourse', $c->id) }}" class="btn btn-info">Detail</a>
-                                <a href="{{ route('editCourse', $c->id) }}" class="btn btn-success">Edit</a>
+                                <a href="{{ route('showCourse', $c->id) }}" class="btn btn-info">{{__('index.view')}}</a>
+                                <a href="{{ route('editCourse', $c->id) }}" class="btn btn-success">{{__('index.edit')}}</a>
                                 <form action="{{ route('deleteCourse', $c->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger">{{__('index.delete')}}</button>
                                 </form>
                             </div class="d-flex flex-row gap-2">
                         </td>
