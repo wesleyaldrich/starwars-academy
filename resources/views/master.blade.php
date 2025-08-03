@@ -23,15 +23,28 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Course List</a>
+                        <a class="nav-link active" aria-current="page"
+                            href="{{ route('indexCourse') }}">{{ __('master.course_list') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Profile</a>
+                        <a class="nav-link active" aria-current="page" href="#">{{ __('master.profile') }}</a>
                     </li>
                 </ul>
             </div>
+            <form action="{{ route('changeLanguage') }}" method="POST">
+                @csrf
+                <select id="lang" name="lang" onchange= 'this.form.submit()'>
+                    <option value="en" @if (app()->getLocale() == 'en') selected @endif>{{ __('master.english') }}
+                    </option>
+                    <option value="id" @if (app()->getLocale() == 'id') selected @endif>
+                        {{ __('master.indonesian') }}</option>
+                </select>
+            </form>
         </div>
     </nav>
+    @session('success')
+        <p class="alert alert-success"> {{ session('success') }} </p>
+    @endsession
     @yield('content')
 </body>
 

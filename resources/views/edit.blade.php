@@ -1,31 +1,31 @@
 @extends('master')
 @section('content')
     <div class="container-fluid">
-        <form action="{{ route('storeCourse') }}" method="POST">
+        <form action="{{ route('updateCourse', $course->id) }}" method="POST">
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">{{ __('form.course_title')}}</label>
-                <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}">
+                <input type="text" class="form-control" id="title" name="title" value="{{ $course->title }}">
                 @error('title')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="mb-3">
                 <label for="force_reward" class="form-label">{{ __('form.force_reward')}}</label>
-                <input type="text" class="form-control" id="force_reward" name="force_reward" value="{{ old('force_reward') }}">
+                <input type="text" class="form-control" id="force_reward" name="force_reward" value="{{ $course->force_reward }}">
                 @error('force_reward')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             {{ __('form.course_role')}}
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="role_id" id="flexRadioDefault1" value="1" {{ old('role_id') == 1 ? 'checked' : '' }}>
+                <input class="form-check-input" type="radio" name="role_id" id="flexRadioDefault1" value="1" {{ $course->role_id == 1 ? 'checked' : '' }}>
                 <label class="form-check-label" for="flexRadioDefault1">
                     Jedi
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="role_id" id="flexRadioDefault2" value="2" {{ old('role_id') == 2 ? 'checked' : '' }}>
+                <input class="form-check-input" type="radio" name="role_id" id="flexRadioDefault2" value="2" {{ $course->role_id == 2 ? 'checked' : '' }}>
                 <label class="form-check-label" for="flexRadioDefault2">
                     Sith
                 </label>
