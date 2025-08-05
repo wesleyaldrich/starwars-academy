@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Hero extends Model
 {
     use SoftDeletes;
+
+    protected $fillable = [
+        'name',
+        'role_id',
+        'user_id'
+    ];
     
     public $timestamps = false;
 
