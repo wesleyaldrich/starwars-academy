@@ -27,7 +27,7 @@
                             href="{{ route('indexCourse') }}">{{ __('master.course_list') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('indexCourse')? 'active' : '' }}" aria-current="page"
+                        <a class="nav-link {{ request()->routeIs('profile')? 'active' : '' }}" aria-current="page"
                             href="{{ route('profile') }}">{{ __('master.profile') }}</a>
                     </li>
                 </ul>

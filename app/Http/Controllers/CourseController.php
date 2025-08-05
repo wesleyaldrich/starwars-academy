@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCourseRequest;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -78,5 +79,18 @@ class CourseController extends Controller
         $course->delete();
 
         return redirect()->route('indexCourse')->with('success', __('alerts.success_delete_course'));
+    }
+
+    public function join(Request $request)
+    {
+        $hero = Auth::user()->hero;
+
+        $course_id = $request->validate([
+            'course_id' => 'required|exists:courses,id',
+        ]);
+
+        $hero->courses()->attach($course_id);
+
+        return redirect()->route('indexCourse')->with('success', 'Course joined successfully!');
     }
 }

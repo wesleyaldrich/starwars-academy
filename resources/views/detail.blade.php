@@ -5,7 +5,11 @@
             <h1 class="">{{ $course->title }}</h1>
             <h3>{{ $course->force_reward }}</h3>
             <h2>{{ $course->role->name }}</h2>
-            <button class="btn btn-info">{{ __('detail.join_course')}}</button>
+            <form action="{{ route('joinCourse') }}" method="POST">
+                @csrf
+                <input type="hidden" name="course_id" value="{{ $course->id }}">
+                <button class="btn btn-info">{{ __('detail.join_course')}}</button>
+            </form>
         </div>
     </div>
 @endsection

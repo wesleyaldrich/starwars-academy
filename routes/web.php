@@ -22,6 +22,7 @@ Route::middleware([SetLanguageMiddleware::class, 'auth'])->group(function(){
     Route::post('/lang', ChangeLanguageController::class)->name('changeLanguage');
     Route::get('/create-hero', [ProfileController::class, 'createHero'])->name('hero.create');
     Route::post('/create-hero', [ProfileController::class, 'storeHero'])->name('hero.store');
+    Route::post('/join-course', [CourseController::class, 'join'])->name('joinCourse');
 
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile')->middleware(HeroExistMiddleware::class);
 });

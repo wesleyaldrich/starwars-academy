@@ -7,7 +7,7 @@
 
         <p>Your joined courses:</p>
         @foreach ($hero->courses as $i)
-            <p>{{ $i->name }}</p>
+            <p>{{ $i->title }}</p>
         @endforeach
     </div>
 @endsection
