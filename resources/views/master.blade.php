@@ -31,15 +31,21 @@
                     </li>
                 </ul>
             </div>
-            <form action="{{ route('changeLanguage') }}" method="POST">
-                @csrf
-                <select id="lang" name="lang" onchange= 'this.form.submit()'>
-                    <option value="en" @if (app()->getLocale() == 'en') selected @endif>{{ __('master.english') }}
-                    </option>
-                    <option value="id" @if (app()->getLocale() == 'id') selected @endif>
-                        {{ __('master.indonesian') }}</option>
-                </select>
-            </form>
+            <div class="d-flex flex-row gap-3">
+                <form action="{{ route('changeLanguage') }}" method="POST">
+                    @csrf
+                    <select id="lang" name="lang" onchange= 'this.form.submit()'>
+                        <option value="en" @if (app()->getLocale() == 'en') selected @endif>{{ __('master.english') }}
+                        </option>
+                        <option value="id" @if (app()->getLocale() == 'id') selected @endif>
+                            {{ __('master.indonesian') }}</option>
+                    </select>
+                </form>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Log out</button>
+                </form>
+            </div>
         </div>
     </nav>
     @session('success')
