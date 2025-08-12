@@ -16,6 +16,7 @@ Route::middleware('app')->group(function(){
     Route::get('/course/edit/{id}', [CourseController::class, 'edit'])->name('editCourse');
     Route::post('/course/edit/{id}', [CourseController::class, 'update'])->name('updateCourse');
     Route::delete('/course/delete/{id}', [CourseController::class, 'destroy'])->name('deleteCourse');
+    Route::post('/join-course/{course}', [CourseController::class, 'joinCourse'])->name('joinCourse');
     Route::post('/lang', ChangeLanguageController::class)->name('changeLanguage');
     Route::get('/profile', [ProfileController::class, 'index'])->name('indexProfile');
 });
