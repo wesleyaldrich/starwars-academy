@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-Route::middleware([SetLanguageMiddleware::class, 'auth'])->group(function(){
+Route::middleware('app')->group(function(){
     Route::get('/', [CourseController::class, 'index'])->name('indexCourse');
     Route::get('/course/{id}', [CourseController::class, 'show'])->name('showCourse');
     Route::get('/create', [CourseController::class, 'create'])->name('createCourse');
@@ -17,9 +17,12 @@ Route::middleware([SetLanguageMiddleware::class, 'auth'])->group(function(){
     Route::post('/course/edit/{id}', [CourseController::class, 'update'])->name('updateCourse');
     Route::delete('/course/delete/{id}', [CourseController::class, 'destroy'])->name('deleteCourse');
     Route::post('/lang', ChangeLanguageController::class)->name('changeLanguage');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('indexProfile');
+});
+
+Route::middleware('auth')->group(function(){
     Route::get('/create-hero', [ProfileController::class, 'createHero'])->name('createHero');
     Route::post('/store-hero', [ProfileController::class, 'storeHero'])->name('storeHero');
-    Route::get('/profile', [ProfileController::class, 'index'])->name('indexProfile');
 });
 
 
