@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
+    public function index()
+    {
+        $hero = Auth::user()->hero;
+
+        return view('profile', compact('hero'));
+    }
+
     public function createHero()
     {
         return view('hero-create');

@@ -19,6 +19,7 @@ Route::middleware([SetLanguageMiddleware::class, 'auth'])->group(function(){
     Route::post('/lang', ChangeLanguageController::class)->name('changeLanguage');
     Route::get('/create-hero', [ProfileController::class, 'createHero'])->name('createHero');
     Route::post('/store-hero', [ProfileController::class, 'storeHero'])->name('storeHero');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('indexProfile');
 });
 
 
