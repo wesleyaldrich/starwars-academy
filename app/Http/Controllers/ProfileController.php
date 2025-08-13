@@ -11,6 +11,10 @@ class ProfileController extends Controller
 {
     public function createHero()
     {
+        if (Auth::user()->hero){
+            return back()->withErrors(['error' => 'You already have a hero!']);
+        }
+
         return view('hero-create');
     }
 
@@ -22,5 +26,12 @@ class ProfileController extends Controller
         Hero::create($data);
 
         return redirect()->route('indexCourse')->with('success', 'Successfully create hero!');
+    }
+
+    public function index()
+    {
+        $hero = Auth::user()->hero;
+
+        return view('profile', compact('hero'));
     }
 }
